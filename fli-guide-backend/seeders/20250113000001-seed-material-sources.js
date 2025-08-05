@@ -48,21 +48,22 @@ module.exports = {
       }
    },
 
-   async down(queryInterface, Sequelize) {
-      const transaction = await queryInterface.sequelize.transaction();
+async down(queryInterface, Sequelize) {
+   const transaction = await queryInterface.sequelize.transaction();
 
-      try {
-         await queryInterface.sequelize.query("DELETE FROM `material_sources`", {
-            transaction,
-         });
-         console.log("🗑️  Cleared data from material_sources");
+   try {
+      await queryInterface.sequelize.query(
+         "TRUNCATE TABLE `material_sources` RESTART IDENTITY CASCADE",
+         { transaction }
+      );
+      console.log("🗑️ Cleared and reset IDs for material_sources");
 
-         await transaction.commit();
-         console.log("🧹 Material source data cleared successfully!");
-      } catch (error) {
-         await transaction.rollback();
-         console.error("❌ Error clearing material sources data:", error);
-         throw error;
-      }
-   },
+      await transaction.commit();
+      console.log("🧹 Material source data cleared and IDs reset successfully!");
+   } catch (error) {
+      await transaction.rollback();
+      console.error("❌ Error clearing material sources data:", error);
+      throw error;
+   }
+},
 };

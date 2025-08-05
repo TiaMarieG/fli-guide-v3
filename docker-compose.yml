@@ -6,7 +6,7 @@ services:
       ports:
          - "5025:5025"
       environment:
-         - NODE_ENV=production
+         NODE_ENV: production
       env_file:
          - ./fli-guide-backend/.env
       volumes:
