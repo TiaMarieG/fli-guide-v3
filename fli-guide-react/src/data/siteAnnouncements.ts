@@ -36,7 +36,14 @@ export const siteAnnouncements = [
       type: "project",
       title: "New Feature: Presets!",
       message:
-         "Recipe Calculator now supports presets, allowing you to quickly generate recipes for Life tasks, BiS gear, and upgrading Marco's Shop. There's also a 'Search by Material' feature to find recipes based on a chosen material.",
+         "Recipe Calculator now supports presets, allowing you to quickly generate recipes for Life tasks, BiS gear, and upgrading Marco's Shop. There's also a 'Search by Material' feature to find recipes based on a chosen material. In addition to these, you are now able to mark a material as collected by clicking the checkbox next to it. This will help you keep track of what you have and what you still need to collect.",
       date: "2025-07-22",
+   },
+   {
+      id: 6,
+      type: "project",
+      title: "New Website Now Live!",
+      message: "Fli-Guide has undergone quite an overhaul, featuring a new design and improved functionality. These changes aim to enhance the user experience, make future updates easier to implement, and keep the site optimized for smooth, efficient use.",
+      date: "2025-08-05",
    },
 ];

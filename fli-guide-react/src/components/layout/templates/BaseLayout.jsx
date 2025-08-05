@@ -21,7 +21,7 @@ const BaseLayout = ({ children, headerImage }) => {
                      width: "100%",
                      aspectRatio: "24 / 9",
                      objectFit: "fill",
-                     borderRadius: 2,
+                     borderRadiusBottom: 2,
                      display: "block",
                      mb: -3,
                   }}
