@@ -45,7 +45,9 @@ app.get("/api/steam-feed", async (req, res) => {
          data: items,
          timestamp: now,
       };
-      console.log(`Successfully fetched and cached ${items.length} Steam items.`);
+      console.log(
+         `Successfully fetched and cached ${items.length} Steam items.`
+      );
       res.json({ items });
    } catch (error) {
       console.error("Error fetching Steam RSS feed:", error);
@@ -63,8 +65,8 @@ db.sequelize
    .sync({ alter: false })
    .then(() => {
       console.log("✅ Database synced");
-      app.listen(PORT, () => {
-         console.log(`🚀 Server running at http://localhost:${PORT}`);
+      app.listen(PORT, "0.0.0.0", () => {
+         console.log(`🚀 Server running at http://0.0.0.0:${PORT}`);
       });
    })
    .catch((err) => {
