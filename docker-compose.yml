@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
    backend:
       build:
@@ -10,22 +12,25 @@ services:
       env_file:
          - ./fli-guide-backend/.env
       volumes:
-         - ./fli-guide-backend:/app
+         - ./fli-guide-backend:/app # Mount source code
+         - /app/node_modules # Prevent host overwrite of node_modules
       depends_on:
          - db
 
    frontend:
       build:
          context: ./fli-guide-react
+      container_name: fli-guide-v3-frontend
       ports:
-         - "5173:80" # React will be served via nginx from port 80 inside container
+         - "5173:80" # Served via nginx from port 80 in container
       depends_on:
          - backend
 
    db:
       image: mysql:8
+      container_name: fli-guide-v3-db-1
       environment:
-         MYSQL_ROOT_PASSWORD: password # Change this to the password in your .env file
+         MYSQL_ROOT_PASSWORD: password # Change this to match .env
          MYSQL_DATABASE: fli_db
       ports:
          - "3307:3306"
