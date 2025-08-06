@@ -1,5 +1,5 @@
-# Use official Node.js LTS Alpine image
-FROM node:20-alpine
+# Use official Node.js slim image for better compatibility
+FROM node:20-slim
 
 # Set working directory
 WORKDIR /app
@@ -14,8 +14,8 @@ COPY . .
 # Make wait-for.sh executable
 RUN chmod +x wait-for.sh
 
-# Expose your backend port (change if needed)
+# Expose your backend port
 EXPOSE 5025
 
 # Wait for MySQL to be ready, then start server
-CMD ["sh", "-c", "./wait-for.sh db:3306 -- npm run start"]
+CMD ["sh", "-c", "./wait-for.sh"]

@@ -4,7 +4,17 @@ set -e
 
 echo "Waiting for MySQL at $DB_HOST:$DB_PORT..."
 
-while ! nc -z "$DB_HOST" "$DB_PORT"; do
+# Use Node.js to check port instead of netcat
+while ! node -e "
+  const net = require('net');
+  const socket = new net.Socket();
+  socket.setTimeout(1000);
+  socket.on('error', () => process.exit(1));
+  socket.on('timeout', () => process.exit(1));
+  socket.connect(process.env.DB_PORT, process.env.DB_HOST, () => {
+    socket.end();
+  });
+"; do
   sleep 1
 done
 
