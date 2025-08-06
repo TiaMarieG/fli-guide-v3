@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Copy package files and install dependencies
 COPY package*.json ./
-RUN npm install
+RUN npm install --no-fund --no-audit --legacy-peer-deps
 
 # Copy all backend source files
 COPY . .
@@ -18,4 +18,4 @@ RUN chmod +x wait-for.sh
 EXPOSE 5025
 
 # Wait for MySQL to be ready, then start server
-CMD ["./wait-for.sh", "db:3306", "--", "node", "server.js"]
+CMD ["sh", "-c", "./wait-for.sh db:3306 -- npm run start"]
