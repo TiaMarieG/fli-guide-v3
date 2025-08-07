@@ -22,15 +22,5 @@ while ! node -e "
   sleep 1
 done
 
-echo "MySQL is up — verifying sequelize packages..."
-
-# Make sure sequelize dependencies are installed
-node -e "require('sequelize')"
-node -e "require('sequelize-cli')"
-
-echo "Running migrations and seeds..."
-npx sequelize-cli db:migrate
-npx sequelize-cli db:seed:all
-
-echo "Starting server..."
+echo "MySQL is up — Starting server..."
 npm start
